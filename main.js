@@ -26,35 +26,14 @@ const addListItem = (newItemText) => {
 };
 
 // global search query
-let query = "";
-// select search input field
 const searchInputField = document.getElementById("search");
 
-// this function checks if the user presses backspace,
-// and removes the last letter of the query, if he does
-// and returns the new searchQuery
-const checkForBackspace = (searchQuery, key) => {
-  if (key === "Backspace") {
-    // remove last letter from query
-    return searchQuery.slice(0, -10);
-  }
-  return searchQuery;
-};
-
 // get input with every keyup
-searchInputField.addEventListener("keyup", (keystroke) => {
+searchInputField.addEventListener("keyup", () => {
   // this function deletes all old list items
   deleteAllListItems();
-
-  const key = keystroke.key;
-
-  // add key to a global string
-  query += key;
-
-  query = checkForBackspace(query, key);
-
-
-  // console.log(query);
+  // this is the search query:
+  const query = searchInputField.value;
 
   // ////////// fetch data from api /////////////
   // for every letter, access api and fetch data
